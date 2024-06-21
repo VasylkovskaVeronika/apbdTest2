@@ -1,11 +1,13 @@
-﻿namespace WebApplication1.Services;
+﻿using WebApplication1.Models;
+
+namespace WebApplication1.Services;
 
 public interface IDbService
 {
-    Task<ICollection<Order>> GetOrdersData(string? clientLastName);
-    Task<bool> DoesClientExist(int clientID);
-    Task<bool> DoesEmployeeExist(int employeeID);
-    Task AddNewOrder(Order order);
-    Task<Pastry?> GetPastryByName(string name);
-    Task AddOrderPastries(IEnumerable<OrderPastry> orderPastries);
+    Task<ICollection<Character>> GetCharacterData(int id);
+    Task<bool> DoesCharacterExist(int id);
+    public Task<Character?> GetCharacterById(int id);
+    Task AddNewItem(ICollection<Item> Item);
+    Task<Item?> GetItemById(int id);
+
 }

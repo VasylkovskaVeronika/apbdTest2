@@ -112,12 +112,6 @@ public class DatabaseContext : DbContext
                     AcquiredAt = DateTime.Parse("2010-05-04"),
                     CharacterId = 2,
                     TitleId = 1
-                },
-                new CharacterTitle
-                {
-                    AcquiredAt = DateTime.Parse("2024-09-04"),
-                    CharacterId = 1,
-                    TitleId = 2
                 }
             });
     }
