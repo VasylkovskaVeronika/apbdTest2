@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebApplication1.Models;
 
 namespace WebApplication1.Data;
 
@@ -12,127 +13,111 @@ public class DatabaseContext : DbContext
     {
     }
 
-    public DbSet<Pastry> Pastries { get; set; }
-    public DbSet<Client> Clients { get; set; }
-    public DbSet<Employee> Employees { get; set; }
-    public DbSet<Order> Orders { get; set; }
-    public DbSet<OrderPastry> OrderPastries { get; set; }
+    public DbSet<Title> Titles { get; set; }
+    public DbSet<Character> Characters { get; set; }
+    public DbSet<Backpack> Backpacks { get; set; }
+    public DbSet<Item> Items { get; set; }
+    public DbSet<CharacterTitle> CharacterTitles { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         
-        modelBuilder.Entity<Client>().HasData(new List<Client>
+        modelBuilder.Entity<Character>().HasData(new List<Character>
             {
-                new Client {
+                new Character {
                     Id = 1,
-                    FirstName = "Jan",
-                    LastName = "Kowalski"
+                    FirstName = "Ed",
+                    LastName = "Sheeran"
                 },
-                new Client {
+                new Character {
                     Id = 2,
                     FirstName = "Anna",
-                    LastName = "Nowak"
+                    LastName = "Salem"
                 }
             });
 
-            modelBuilder.Entity<Employee>().HasData(new List<Employee>
+            modelBuilder.Entity<Backpack>().HasData(new List<Backpack>
             {
-                new Employee {
-                    Id = 1,
-                    FirstName = "Adam",
-                    LastName = "Nowak"
+                new Backpack {
+                    ItemId = 1,
+                    CharacterId = 2
                 },
-                new Employee {
-                    Id = 2,
-                    FirstName = "Aleksandra",
-                    LastName = "Wiśniewska"
+                new Backpack {
+                    ItemId = 2,
+                    CharacterId = 1
                 }
             });
 
-            modelBuilder.Entity<Pastry>().HasData(new List<Pastry>
+            modelBuilder.Entity<Title>().HasData(new List<Title>
             {
-                new Pastry
+                new Title
                 {
                     Id = 1,
-                    Name = "Drożdzówka",
-                    Price = 3.3M,
-                    Type = "A"
+                    Name = "Truth",
                 },
-                new Pastry
+                new Title
                 {
                     Id = 2,
-                    Name = "Babka cytrynowa",
-                    Price = 21.23M,
-                    Type = "B"
+                    Name = "Fake",
+                   
                 },
-                new Pastry
+                new Title
                 {
                     Id = 3,
-                    Name = "Jagodzianka",
-                    Price = 7.2M,
-                    Type = "A"
+                    Name = "Creativity",
+                  
                 }
             });
 
-            modelBuilder.Entity<Order>().HasData(new List<Order>
+            modelBuilder.Entity<Item>().HasData(new List<Item>
             {
-                new Order
+                new Item
                 {
-                    Id = 1,
-                    AcceptedAt = DateTime.Parse("2024-05-28"),
-                    FulfilledAt = DateTime.Parse("2024-05-29"),
-                    Comments = "Lorem ipsum ...",
-                    ClientId = 1,
-                    EmployeeId = 2
+                   Id=1,
+                   Name="smth",
+                   Weight = 10
                 },
-                new Order
+                new Item
                 {
                     Id = 2,
-                    AcceptedAt = DateTime.Parse("2024-05-31"),
-                    FulfilledAt = DateTime.Parse("2024-06-01"),
-                    Comments = "Lorem ipsum ...",
-                    ClientId = 1,
-                    EmployeeId = 1
+                    Name="smth",
+                    Weight = 10
                 },
-                new Order
+                new Item
                 {
                     Id = 3,
-                    AcceptedAt = DateTime.Parse("2024-06-01"),
-                    FulfilledAt = null,
-                    Comments = null,
-                    ClientId = 2,
-                    EmployeeId = 1
+                    Name="smth",
+                    Weight = 10
                 }
             });
 
-            modelBuilder.Entity<OrderPastry>().HasData(new List<OrderPastry>
+            modelBuilder.Entity<CharacterTitle>().HasData(new List<CharacterTitle>
             {
-                new OrderPastry
+                new CharacterTitle
                 {
-                    OrderId = 1,
-                    PastryId = 1,
-                    Amount = 3,
+                    AcquiredAt = DateTime.Parse("2024-05-04"),
+                    CharacterId = 1,
+                    TitleId = 2
                 },
-                new OrderPastry
+                new CharacterTitle
                 {
-                    OrderId = 1,
-                    PastryId = 3,
-                    Amount = 4,
-                    Comment = "Lorem ipsum ..."
+                    AcquiredAt = DateTime.Parse("2024-06-04"),
+                    CharacterId = 2,
+                    TitleId = 3
                 },
-                new OrderPastry
+                new CharacterTitle
                 {
-                    OrderId = 2,
-                    PastryId = 2,
-                    Amount = 2
+                    AcquiredAt = DateTime.Parse("2010-05-04"),
+                    CharacterId = 2,
+                    TitleId = 1
                 },
-                new OrderPastry
+                new CharacterTitle
                 {
-                    OrderId = 2,
-                    PastryId = 1,
-                    Amount = 12
+                    AcquiredAt = DateTime.Parse("2024-09-04"),
+                    CharacterId = 1,
+                    TitleId = 2
                 }
             });
     }
